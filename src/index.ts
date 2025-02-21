@@ -4,6 +4,8 @@ import connectRedis from 'connect-redis'
 import Redis from 'ioredis'
 import { DataSource } from 'typeorm'
 import { User } from './repo/User'
+import { Thread } from './repo/Thread'
+import { ThreadItem } from './repo/ThreadItem'
 
 require('dotenv').config()
 
@@ -25,7 +27,7 @@ const dataSource = new DataSource({
   username: process.env.PG_ACCOUNT,
   password: process.env.PG_PASSWORD,
   database: process.env.PG_DATABASE,
-  entities: [User],
+  entities: [User, Thread, ThreadItem],
   synchronize: true, // Tylko w przypadku deweloperskim, w produkcji używaj migracji
   logging: process.env.NODE_ENV !== 'production',
 })
